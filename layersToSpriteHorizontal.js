@@ -3,16 +3,16 @@
 
 // Arrange layers into a sprite sheet.
 
-if (documents.length > 0){
+if (documents.length > 0) {
     var rows = 1;
 
     // --------------------------
-    docRef = activeDocument;
+    var docRef = activeDocument;
     var activeLayer = docRef.activeLayer;
 
-    numLayers = docRef.artLayers.length;
+    var numLayers = docRef.artLayers.length;
 
-    var cols = Math.ceil(numLayers/rows);
+    var cols = Math.ceil(numLayers / rows);
 
     var spriteX = docRef.width;
     var spriteY = docRef.height;
@@ -21,25 +21,25 @@ if (documents.length > 0){
     app.preferences.rulerUnits = Units.PIXELS;
 
     // resize the canvas
-    newX = spriteX * cols;
-    newY = spriteY * rows;
+    var newX = spriteX * cols;
+    var newY = spriteY * rows;
 
-    docRef.resizeCanvas( newX, newY, AnchorPosition.TOPLEFT );
+    docRef.resizeCanvas(newX, newY, AnchorPosition.TOPLEFT);
 
     // move the layers around
     var rowi = 0;
     var coli = 0;
 
-    for (i=(numLayers - 1); i >= 0; i--){
+    for (var i = (numLayers - 1); i >= 0; i--) {
         docRef.artLayers[i].visible = 1;
 
-        var movX = spriteX*coli;
-        var movY = spriteY*rowi;
+        var movX = spriteX * coli;
+        var movY = spriteY * rowi;
 
         docRef.artLayers[i].translate(movX, movY);
 
         rowi++;
-        if (rowi > (rows - 1)){
+        if (rowi > (rows - 1)) {
             coli++;
             rowi = 0;
         }
